@@ -1,0 +1,12 @@
+# R specific
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# macOS
+.DS_Store
+
+# Temp files
+*~
+*.swp
