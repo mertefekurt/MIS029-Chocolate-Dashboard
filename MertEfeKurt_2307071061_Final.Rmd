@@ -1,0 +1,14 @@
+---
+title: "🍫 Chocolate Bar Ratings Analysis"
+author: "Mert Efe Kurt | 2307071061"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: 
+      version: 4
+      bootswatch: cosmo
+    navbar:
+      - { title: "MIS029 Final Project", align: right }
+    source_code: embed
+---
