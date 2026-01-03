@@ -12,3 +12,51 @@ output:
       - { title: "MIS029 Final Project", align: right }
     source_code: embed
 ---
+
+```{css, echo=FALSE}
+/* ===== PREMIUM CHOCOLATE THEME ===== */
+
+/* Import elegant fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+/* Root variables for consistent theming */
+:root {
+  --chocolate-dark: #2C1810;
+  --chocolate-medium: #5D4037;
+  --chocolate-light: #8D6E63;
+  --chocolate-cream: #D7CCC8;
+  --chocolate-milk: #EFEBE9;
+  --gold-accent: #D4AF37;
+  --gold-light: #F4E4BC;
+  --success-green: #4CAF50;
+  --warning-orange: #FF9800;
+  --danger-red: #E53935;
+}
+
+/* Prevent horizontal overflow - CRITICAL */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Global body styling */
+body {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
+  color: var(--chocolate-dark);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure all containers respect boundaries */
+* {
+  box-sizing: border-box;
+}
+
+/* Main container */
+.container-fluid, .row {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+```
