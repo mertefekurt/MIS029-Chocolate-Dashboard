@@ -101,4 +101,59 @@ body {
   margin-bottom: 15px;
 }
 
+/* Chart containers */
+.chart-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(44, 24, 16, 0.08);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.chart-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44, 24, 16, 0.12);
+}
+
+/* Chart stage - allow vertical scroll when needed */
+.chart-stage {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  width: 100% !important;
+}
+
+/* Plotly and ggplot containers */
+.plotly, .plotly-container, .html-widget {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Value boxes */
+.value-box {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(44, 24, 16, 0.15) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.value-box:hover {
+  transform: scale(1.02);
+}
+
+.value-box .value {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+}
+
+.value-box .caption {
+  font-family: 'Source Sans Pro', sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 ```
