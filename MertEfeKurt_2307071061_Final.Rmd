@@ -311,4 +311,71 @@ table.dataTable tbody tr:hover {
   overflow-x: hidden !important;
 }
 
+/* Stats highlight */
+.stat-highlight {
+  background: linear-gradient(135deg, var(--gold-light) 0%, #FFFFFF 100%);
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+.stat-highlight .number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--chocolate-dark);
+}
+
+.stat-highlight .label {
+  font-size: 0.85rem;
+  color: var(--chocolate-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Gauge styling */
+.gauge-container {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chocolate-milk);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chocolate-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chocolate-medium);
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-stage {
+  animation: fadeInUp 0.6s ease-out;
+}
+
 ```
