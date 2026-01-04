@@ -156,4 +156,95 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* Tables - prevent horizontal scroll and fix backgrounds */
+.dataTable {
+  font-size: 0.9rem !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  table-layout: auto !important;
+  background-color: white !important;
+}
+
+.dataTables_wrapper {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  background-color: white !important;
+}
+
+.dataTables_scroll {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  background-color: white !important;
+}
+
+/* Fix white space issue in Data table - CRITICAL */
+.dataTables_scrollBody {
+  background-color: white !important;
+  overflow-y: auto !important;
+}
+
+.dataTables_scrollHead {
+  background-color: white !important;
+}
+
+.dataTables_scroll {
+  background-color: white !important;
+}
+
+table.dataTable {
+  background-color: white !important;
+}
+
+table.dataTable tbody tr {
+  background-color: white !important;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+  background-color: #FAFAFA !important;
+}
+
+table.dataTable tbody tr:hover {
+  background-color: var(--gold-light) !important;
+}
+
+/* Data page specific - fill container */
+.chart-wrapper.html-fill-container {
+  height: 100% !important;
+  min-height: calc(100vh - 200px) !important;
+}
+
+/* Ensure DataTable fills its container */
+.html-widget.html-fill-item {
+  height: 100% !important;
+  min-height: calc(100vh - 250px) !important;
+}
+
+.dataTable thead th {
+  background: linear-gradient(135deg, var(--chocolate-dark), var(--chocolate-medium)) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dataTable tbody tr:hover {
+  background-color: var(--gold-light) !important;
+}
+
+.dataTable tbody td {
+  word-wrap: break-word;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Kable tables */
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: var(--chocolate-milk);
+}
+
 ```
