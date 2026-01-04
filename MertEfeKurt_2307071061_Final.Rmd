@@ -247,4 +247,68 @@ table.dataTable tbody tr:hover {
   background-color: var(--chocolate-milk);
 }
 
+/* Custom card styling */
+.info-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, var(--chocolate-milk) 100%);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.1);
+  border-left: 5px solid var(--gold-accent);
+  margin-bottom: 20px;
+}
+
+.premium-card {
+  background: linear-gradient(135deg, var(--chocolate-dark) 0%, var(--chocolate-medium) 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(44, 24, 16, 0.25);
+}
+
+.premium-card h4 {
+  color: var(--gold-accent);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+}
+
+/* Interpretation boxes - MUST BE VISIBLE */
+.interpretation-box {
+  background: linear-gradient(135deg, var(--chocolate-milk) 0%, #FFFFFF 100%);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--gold-accent);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.08);
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure chart wrappers don't overflow */
+.chart-shim {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.section.level3 {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding-bottom: 10px;
+  max-width: 100% !important;
+}
+
+/* Column sections */
+.section {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Flexdashboard columns */
+.flexdashboard-column {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
 ```
