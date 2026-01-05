@@ -490,3 +490,29 @@ img, svg, canvas {
   overflow-x: hidden !important;
 }
 ```
+
+```{r setup, include=FALSE}
+# ===== SETUP AND DATA LOADING =====
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  message = FALSE, 
+  warning = FALSE,
+  fig.retina = 2
+)
+
+# Load required libraries
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(DT)
+library(scales)
+library(knitr)
+library(kableExtra)
+
+# Load the chocolate dataset from TidyTuesday
+chocolate <- read_csv(
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv",
+  show_col_types = FALSE
+)
+
+```
