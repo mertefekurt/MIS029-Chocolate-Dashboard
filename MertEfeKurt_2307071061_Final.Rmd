@@ -515,4 +515,32 @@ chocolate <- read_csv(
   show_col_types = FALSE
 )
 
+# ===== DATA PREPARATION =====
+chocolate <- chocolate %>%
+  mutate(
+    # Convert cocoa_percent to numeric
+    cocoa_percent_num = as.numeric(gsub("%", "", cocoa_percent)),
+    # Extract number of ingredients
+    num_ingredients = as.numeric(str_extract(ingredients, "^[0-9]")),
+    # Create rating categories
+    rating_category = case_when(
+      rating >= 4 ~ "Outstanding",
+      rating >= 3.5 ~ "Highly Recommended",
+      rating >= 3 ~ "Recommended",
+      rating >= 2.5 ~ "Disappointing",
+      TRUE ~ "Unpleasant"
+    ),
+    rating_category = factor(rating_category, levels = c(
+      "Outstanding", "Highly Recommended", "Recommended", "Disappointing", "Unpleasant"
+    ))
+  )
+
+# ===== SUMMARY STATISTICS =====
+total_reviews <- nrow(chocolate)
+avg_rating <- round(mean(chocolate$rating, na.rm = TRUE), 2)
+num_countries <- n_distinct(chocolate$company_location)
+num_manufacturers <- n_distinct(chocolate$company_manufacturer)
+avg_cocoa <- round(mean(chocolate$cocoa_percent_num, na.rm = TRUE), 1)
+num_origins <- n_distinct(chocolate$country_of_bean_origin)
+
 ```
