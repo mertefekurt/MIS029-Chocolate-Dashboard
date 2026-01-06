@@ -598,3 +598,61 @@ rating_colors <- c("Outstanding" = "#2E7D32", "Highly Recommended" = "#689F38",
                    "Recommended" = "#FFA000", "Disappointing" = "#F57C00", 
                    "Unpleasant" = "#D32F2F")
 ```
+
+About {data-icon="fa-info-circle"}
+=====================================
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### 📌 Project Information {data-height=500}
+
+<div class="premium-card" style="padding: 20px;">
+
+<h4 style="margin-top: 0;">📚 Course Details</h4>
+
+| | |
+|:--|:--|
+| **Course Code** | MIS029 |
+| **Course Name** | Data Visualization |
+| **Project Type** | Final Project Dashboard |
+
+<h4 style="margin-top: 15px;">👤 Student Information</h4>
+
+| | |
+|:--|:--|
+| **Name & Surname** | Mert Efe Kurt |
+| **Student Number** | 2307071061 |
+| **Submission Date** | `r format(Sys.Date(), "%d %B %Y")` |
+
+<h4 style="margin-top: 15px;">📊 Dataset Overview</h4>
+
+| | |
+|:--|:--|
+| **Dataset** | Chocolate Bar Ratings |
+| **Source** | TidyTuesday 2022-01-18 |
+| **Observations** | `r format(total_reviews, big.mark = ",")` |
+| **Variables** | 10 original + 3 derived |
+| **Period** | 2006 - 2021 |
+
+</div>
+
+### 📖 About This Dataset {data-height=400}
+
+<div class="info-card" style="padding: 15px;">
+
+**Expert ratings of over 2,500 chocolate bars** from around the world, compiled by the **Manhattan Chocolate Society** via [Flavors of Cacao](http://flavorsofcacao.com/).
+
+🌍 **`r num_countries`** countries | 🏭 **`r num_manufacturers`** manufacturers | 🌱 **`r num_origins`** bean origins
+
+**Rating Scale:**
+
+| Score | Category |
+|:------|:---------|
+| 4.0 - 5.0 | 🏆 Outstanding |
+| 3.5 - 3.9 | ⭐ Highly Recommended |
+| 3.0 - 3.49 | ✓ Recommended |
+| 2.5 - 2.99 | ⚠️ Disappointing |
+| 1.0 - 2.49 | ✗ Unpleasant |
+
+</div>
