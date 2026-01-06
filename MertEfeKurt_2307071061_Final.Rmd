@@ -656,3 +656,74 @@ Column {data-width=450}
 | 1.0 - 2.49 | ✗ Unpleasant |
 
 </div>
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### 📋 Variable Names and Types {data-height=650}
+
+```{r}
+# REQUIRED: List of variable names and types using glimpse/str approach
+var_info <- tibble(
+  `#` = 1:ncol(chocolate),
+  Variable = names(chocolate),
+  Type = sapply(chocolate, function(x) {
+    type <- class(x)[1]
+    case_when(
+      type == "character" ~ "Character",
+      type == "numeric" ~ "Numeric",
+      type == "factor" ~ "Factor",
+      TRUE ~ type
+    )
+  }),
+  Description = c(
+    "Unique reference ID",
+    "Manufacturer name",
+    "Manufacturer country",
+    "Review year",
+    "Bean origin country",
+    "Bean variety/bar name",
+    "Cocoa % (text)",
+    "Ingredient codes",
+    "Flavor notes",
+    "Rating (1-5)",
+    "Cocoa % [Derived]",
+    "Ingredient count [Derived]",
+    "Rating label [Derived]"
+  )
+)
+
+# Use kable for compact display - fits all content without scrolling
+kable(var_info, align = c('c', 'l', 'l', 'l')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, font_size = 11) %>%
+  row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
+  column_spec(1, width = "30px", bold = TRUE) %>%
+  column_spec(2, width = "140px", color = "#5D4037") %>%
+  column_spec(3, width = "80px", color = "#1565C0", bold = TRUE) %>%
+  column_spec(4, width = "auto") %>%
+  row_spec(10:13, background = "#FFF8E1")  # Highlight derived variables
+```
+
+### 🔍 Data Structure Preview {data-height=250}
+
+```{r}
+# Show glimpse-style output
+structure_df <- tibble(
+  Metric = c("Rows (Observations)", "Columns (Variables)", 
+             "Memory Size", "Complete Cases", "Missing Values"),
+  Value = c(
+    format(nrow(chocolate), big.mark = ","),
+    ncol(chocolate),
+    format(object.size(chocolate), units = "KB"),
+    format(sum(complete.cases(chocolate)), big.mark = ","),
+    sum(is.na(chocolate))
+  )
+)
+
+kable(structure_df, align = c('l', 'r')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                full_width = TRUE, font_size = 13) %>%
+  row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
+  column_spec(1, bold = TRUE, color = "#5D4037")
+```
