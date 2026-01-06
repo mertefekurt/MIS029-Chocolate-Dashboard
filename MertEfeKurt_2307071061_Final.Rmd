@@ -543,4 +543,58 @@ num_manufacturers <- n_distinct(chocolate$company_manufacturer)
 avg_cocoa <- round(mean(chocolate$cocoa_percent_num, na.rm = TRUE), 1)
 num_origins <- n_distinct(chocolate$country_of_bean_origin)
 
+# ===== PREMIUM GGPLOT THEME =====
+theme_premium <- function() {
+  theme_minimal(base_family = "sans") +
+    theme(
+      # Title styling
+      plot.title = element_text(
+        face = "bold", 
+        size = 16, 
+        color = "#2C1810",
+        margin = margin(b = 10)
+      ),
+      plot.subtitle = element_text(
+        size = 11, 
+        color = "#5D4037",
+        margin = margin(b = 15)
+      ),
+      plot.caption = element_text(
+        size = 9, 
+        color = "#8D6E63",
+        hjust = 0,
+        margin = margin(t = 10)
+      ),
+      # Axis styling
+      axis.title = element_text(
+        face = "bold", 
+        size = 11, 
+        color = "#5D4037"
+      ),
+      axis.text = element_text(
+        size = 10, 
+        color = "#5D4037"
+      ),
+      axis.line = element_line(color = "#D7CCC8", linewidth = 0.5),
+      # Legend styling
+      legend.title = element_text(face = "bold", size = 10, color = "#2C1810"),
+      legend.text = element_text(size = 9, color = "#5D4037"),
+      legend.background = element_rect(fill = "white", color = NA),
+      legend.key = element_rect(fill = "white", color = NA),
+      # Panel styling
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(color = "#EFEBE9", linewidth = 0.4),
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA),
+      # Margins
+      plot.margin = margin(15, 15, 15, 15)
+    )
+}
+
+# Premium color palettes
+chocolate_palette <- c("#2C1810", "#4E342E", "#5D4037", "#6D4C41", "#795548", 
+                       "#8D6E63", "#A1887F", "#BCAAA4", "#D7CCC8", "#EFEBE9")
+rating_colors <- c("Outstanding" = "#2E7D32", "Highly Recommended" = "#689F38",
+                   "Recommended" = "#FFA000", "Disappointing" = "#F57C00", 
+                   "Unpleasant" = "#D32F2F")
 ```
