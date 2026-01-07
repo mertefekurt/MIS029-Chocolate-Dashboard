@@ -727,3 +727,65 @@ kable(structure_df, align = c('l', 'r')) %>%
   row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
   column_spec(1, bold = TRUE, color = "#5D4037")
 ```
+
+
+Summary {data-icon="fa-calculator"}
+=====================================
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### 📊 Summary Statistics for Numeric Variables {data-height=280}
+
+```{r}
+# REQUIRED: Summary statistics (mean, median, SD, min, max)
+numeric_summary <- chocolate %>%
+  select(review_date, cocoa_percent_num, rating, num_ingredients) %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  group_by(Variable) %>%
+  summarise(
+    N = sum(!is.na(Value)),
+    Mean = round(mean(Value, na.rm = TRUE), 2),
+    Median = round(median(Value, na.rm = TRUE), 2),
+    SD = round(sd(Value, na.rm = TRUE), 2),
+    Min = round(min(Value, na.rm = TRUE), 2),
+    Max = round(max(Value, na.rm = TRUE), 2),
+    .groups = 'drop'
+  ) %>%
+  mutate(Variable = case_when(
+    Variable == "review_date" ~ "Review Year",
+    Variable == "cocoa_percent_num" ~ "Cocoa Percentage (%)",
+    Variable == "rating" ~ "Rating Score",
+    Variable == "num_ingredients" ~ "Number of Ingredients"
+  ))
+
+kable(numeric_summary, align = c('l', rep('c', 6)),
+      caption = NULL) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"),
+                full_width = TRUE, font_size = 13) %>%
+  row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
+  column_spec(1, bold = TRUE, color = "#5D4037", width = "180px") %>%
+  row_spec(3, bold = TRUE, background = "#FFF8E1")
+```
+
+### 📍 Frequency Table: Top Manufacturing Countries {data-height=470}
+
+```{r}
+# REQUIRED: Frequency table for categorical variable
+country_freq <- chocolate %>%
+  count(company_location, sort = TRUE) %>%
+  head(12) %>%
+  mutate(
+    Pct = round(n / nrow(chocolate) * 100, 1),
+    `Cum.Pct` = cumsum(Pct),
+    Bar = paste0(strrep("▓", round(Pct/2)), strrep("░", 25 - round(Pct/2)))
+  ) %>%
+  rename(Country = company_location, Count = n)
+
+kable(country_freq %>% select(-Bar), align = c('l', 'c', 'c', 'c')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, font_size = 12) %>%
+  row_spec(0, bold = TRUE, background = "#5D4037", color = "white") %>%
+  row_spec(1, bold = TRUE, background = "#D4AF37", color = "#2C1810") %>%
+  row_spec(2:3, background = "#F4E4BC")
+```
