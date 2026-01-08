@@ -882,3 +882,42 @@ p_hist
 ### 📝 Histogram Interpretation {data-height=250}
 
 The histogram reveals that chocolate ratings follow an approximately **normal distribution** with a slight left skew. The majority of bars (over 60%) receive ratings between **3.0 and 3.5**, placing them in the "Recommended" category. The near-identical mean (`r round(mean(chocolate$rating), 2)`) and median (`r round(median(chocolate$rating), 2)`) confirm the distribution's symmetry.
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### 🍫 Cocoa Percentage Distribution {data-height=350}
+
+```{r fig.height=3.5, fig.width=6}
+p_cocoa_hist <- ggplot(chocolate, aes(x = cocoa_percent_num)) +
+  geom_histogram(binwidth = 5, fill = "#8D6E63", color = "#5D4037", alpha = 0.85) +
+  geom_vline(xintercept = 70, color = "#D4AF37", linetype = "dashed", linewidth = 0.8) +
+  annotate("label", x = 82, y = 650, label = "70% = Mode", 
+           fill = "#FFF8E1", color = "#D4AF37", size = 2.5, fontface = "bold") +
+  labs(title = "Cocoa Percentage Distribution",
+       subtitle = "70% is the most common formulation",
+       x = "Cocoa %", y = "Count") +
+  scale_x_continuous(breaks = seq(40, 100, 10)) +
+  theme_premium() +
+  theme(plot.title = element_text(size = 12),
+        plot.subtitle = element_text(size = 9))
+
+p_cocoa_hist
+```
+
+### 📈 Key Statistics {data-height=400}
+
+| Statistic | Rating | Cocoa % |
+|:----------|-------:|--------:|
+| **Mean** | `r round(mean(chocolate$rating), 2)` | `r round(mean(chocolate$cocoa_percent_num, na.rm=T), 1)`% |
+| **Median** | `r median(chocolate$rating)` | `r median(chocolate$cocoa_percent_num, na.rm=T)`% |
+| **Std Dev** | `r round(sd(chocolate$rating), 2)` | `r round(sd(chocolate$cocoa_percent_num, na.rm=T), 1)`% |
+| **Range** | `r min(chocolate$rating)` - `r max(chocolate$rating)` | `r min(chocolate$cocoa_percent_num, na.rm=T)` - `r max(chocolate$cocoa_percent_num, na.rm=T)`% |
+
+**Key Insights:** 
+
+- Mode rating is 3.25
+- 75% of ratings fall between 2.75-3.5
+- 70% cocoa is the most common formulation
+- Only ~5% achieve "Outstanding" (4.0+)
+
