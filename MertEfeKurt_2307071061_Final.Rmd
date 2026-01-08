@@ -836,3 +836,49 @@ kable(rating_freq, align = c('l', 'c', 'c', 'c')) %>%
 valueBox(format(total_reviews, big.mark = ","), 
          caption = "Total Reviews", icon = "fa-chart-bar", color = "#2C1810")
 ```
+
+
+Histogram {data-icon="fa-chart-bar"}
+=====================================
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### 📊 Histogram: Distribution of Expert Chocolate Ratings {data-height=500}
+
+```{r fig.height=5, fig.width=8}
+# REQUIRED: Histogram for numerical variable with appropriate labels and minimal theme
+# Purpose: Visualize rating distribution to understand chocolate quality spread
+
+p_hist <- ggplot(chocolate, aes(x = rating)) +
+  geom_histogram(binwidth = 0.25, fill = "#5D4037", color = "#2C1810", 
+                 alpha = 0.85, linewidth = 0.3) +
+  geom_vline(aes(xintercept = mean(rating)), 
+             color = "#C62828", linetype = "dashed", linewidth = 1) +
+  geom_vline(aes(xintercept = median(rating)), 
+             color = "#1565C0", linetype = "solid", linewidth = 1) +
+  annotate("label", x = 3.7, y = 480, 
+           label = paste0("Mean = ", round(mean(chocolate$rating), 2)),
+           fill = "#FFEBEE", color = "#C62828", fontface = "bold", size = 3,
+           label.padding = unit(0.35, "lines")) +
+  annotate("label", x = 2.8, y = 420,
+           label = paste0("Median = ", round(median(chocolate$rating), 2)),
+           fill = "#E3F2FD", color = "#1565C0", fontface = "bold", size = 3,
+           label.padding = unit(0.35, "lines")) +
+  labs(
+    title = "Distribution of Expert Chocolate Bar Ratings",
+    subtitle = "Most chocolates receive ratings between 3.0 and 3.5 (Recommended category)",
+    x = "Expert Rating Score",
+    y = "Number of Chocolate Bars",
+    caption = "Dashed red = Mean | Solid blue = Median | Data: TidyTuesday 2022"
+  ) +
+  scale_x_continuous(breaks = seq(1, 5, 0.5), limits = c(1, 4.5)) +
+  scale_y_continuous(labels = comma) +
+  theme_premium()
+
+p_hist
+```
+
+### 📝 Histogram Interpretation {data-height=250}
+
+The histogram reveals that chocolate ratings follow an approximately **normal distribution** with a slight left skew. The majority of bars (over 60%) receive ratings between **3.0 and 3.5**, placing them in the "Recommended" category. The near-identical mean (`r round(mean(chocolate$rating), 2)`) and median (`r round(median(chocolate$rating), 2)`) confirm the distribution's symmetry.
