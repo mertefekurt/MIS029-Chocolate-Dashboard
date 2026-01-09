@@ -971,3 +971,52 @@ p_box
 ### 📝 Boxplot Interpretation {data-height=250}
 
 This boxplot compares rating distributions across the **top 10 chocolate-manufacturing countries**. **Japan** shows the highest median rating with low variability. **U.S.A.** and **France** display the widest spreads. All countries have median ratings around **3.0-3.25**. Gold diamonds (means) align closely with medians.
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### 📊 Rating by Cocoa Range {data-height=350}
+
+```{r fig.height=3.2, fig.width=6}
+chocolate_cocoa <- chocolate %>%
+  mutate(cocoa_range = cut(cocoa_percent_num, 
+                           breaks = c(40, 60, 70, 80, 100),
+                           labels = c("Low\n40-60%", "Medium\n60-70%", 
+                                    "High\n70-80%", "Very High\n80-100%"),
+                           include.lowest = TRUE)) %>%
+  filter(!is.na(cocoa_range))
+
+p_box_cocoa <- ggplot(chocolate_cocoa, aes(x = cocoa_range, y = rating, fill = cocoa_range)) +
+  geom_boxplot(alpha = 0.85, width = 0.6, outlier.size = 1.5, outlier.alpha = 0.5, lwd = 0.4) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 2.5, color = "#D4AF37") +
+  scale_fill_manual(values = c("#EFEBE9", "#BCAAA4", "#795548", "#3E2723")) +
+  labs(title = "Rating by Cocoa Content Level",
+       x = NULL, y = "Rating") +
+  theme_premium() +
+  theme(legend.position = "none",
+        plot.title = element_text(size = 13))
+
+p_box_cocoa
+```
+
+### 📋 Country Statistics {data-height=400}
+
+```{r}
+country_stats <- chocolate_top %>%
+  group_by(company_location) %>%
+  summarise(
+    N = n(),
+    Mean = round(mean(rating), 2),
+    Median = median(rating),
+    SD = round(sd(rating), 2),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Median)) %>%
+  rename(Country = company_location)
+
+kable(country_stats, align = c('l', rep('c', 4))) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, font_size = 11) %>%
+  row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
+  row_spec(1, background = "#F4E4BC", bold = TRUE)
+```
