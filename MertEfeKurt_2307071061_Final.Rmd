@@ -921,3 +921,53 @@ p_cocoa_hist
 - 70% cocoa is the most common formulation
 - Only ~5% achieve "Outstanding" (4.0+)
 
+
+Boxplot {data-icon="fa-boxes-stacked"}
+=====================================
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+ 
+### 📦 Multiple Boxplot: Rating Distribution by Manufacturing Country {data-height=500}
+
+```{r fig.height=5, fig.width=8}
+# REQUIRED: Multiple boxplot - numeric variable grouped by categorical variable
+# Purpose: Compare rating distributions across countries (categorical grouping)
+
+top_countries <- chocolate %>%
+  count(company_location, sort = TRUE) %>%
+  head(10) %>%
+  pull(company_location)
+
+chocolate_top <- chocolate %>%
+  filter(company_location %in% top_countries) %>%
+  mutate(company_location = fct_reorder(company_location, rating, .fun = median, .desc = TRUE))
+
+p_box <- ggplot(chocolate_top, aes(x = company_location, y = rating, fill = company_location)) +
+  geom_boxplot(alpha = 0.85, outlier.shape = 21, outlier.fill = "#D32F2F", 
+               outlier.color = "#B71C1C", outlier.size = 1.8, outlier.alpha = 0.6,
+               width = 0.7, lwd = 0.4) +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3.5, 
+               color = "#D4AF37") +
+  scale_fill_manual(values = rev(chocolate_palette[1:10])) +
+  labs(
+    title = "Chocolate Rating Distribution by Manufacturing Country",
+    subtitle = "Top 10 countries | Gold diamonds = mean | Red dots = outliers",
+    x = NULL,
+    y = "Expert Rating Score",
+    caption = "Countries ordered by median rating (descending)"
+  ) +
+  scale_y_continuous(breaks = seq(1, 5, 0.5), limits = c(1.5, 4.5)) +
+  theme_premium() +
+  theme(
+    axis.text.x = element_text(angle = 40, hjust = 1, size = 11, face = "bold"),
+    legend.position = "none",
+    panel.grid.major.x = element_blank()
+  )
+
+p_box
+```
+
+### 📝 Boxplot Interpretation {data-height=250}
+
+This boxplot compares rating distributions across the **top 10 chocolate-manufacturing countries**. **Japan** shows the highest median rating with low variability. **U.S.A.** and **France** display the widest spreads. All countries have median ratings around **3.0-3.25**. Gold diamonds (means) align closely with medians.
