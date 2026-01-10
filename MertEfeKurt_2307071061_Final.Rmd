@@ -1020,3 +1020,72 @@ kable(country_stats, align = c('l', rep('c', 4))) %>%
   row_spec(0, bold = TRUE, background = "#2C1810", color = "white") %>%
   row_spec(1, background = "#F4E4BC", bold = TRUE)
 ```
+
+
+Scatterplot {data-icon="fa-chart-scatter-bubble"}
+=====================================
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### 🔵 Scatterplot: Cocoa Percentage vs Rating by Bean Origin Region {data-height=500}
+
+```{r fig.height=5, fig.width=8}
+# REQUIRED: Scatterplot for two numerical variables with categorical coloring
+# Purpose: Examine cocoa % vs rating relationship, colored by bean origin
+
+chocolate_scatter <- chocolate %>%
+  mutate(
+    bean_region = case_when(
+      country_of_bean_origin %in% c("Venezuela", "Ecuador", "Peru", "Colombia", 
+                                     "Bolivia", "Brazil") ~ "South America",
+      country_of_bean_origin %in% c("Madagascar", "Tanzania", "Ghana", "Ivory Coast",
+                                     "Cameroon", "Nigeria", "Uganda", "Togo", 
+                                     "Congo", "Sao Tome") ~ "Africa",
+      country_of_bean_origin %in% c("Dominican Republic", "Nicaragua", "Guatemala",
+                                     "Mexico", "Belize", "Costa Rica", "Honduras",
+                                     "Haiti", "Jamaica", "Trinidad") ~ "Central Am. & Caribbean",
+      country_of_bean_origin %in% c("Papua New Guinea", "Indonesia", "Philippines",
+                                     "Vietnam", "India", "Fiji", "Vanuatu") ~ "Asia-Pacific",
+      TRUE ~ "Other / Blend"
+    )
+  ) %>%
+  filter(!is.na(cocoa_percent_num))
+
+p_scatter <- ggplot(chocolate_scatter, 
+                    aes(x = cocoa_percent_num, y = rating, color = bean_region)) +
+  geom_jitter(alpha = 0.5, size = 2, width = 0.8, height = 0.03) +
+  geom_smooth(aes(group = 1), method = "loess", se = TRUE, 
+              color = "#2C1810", fill = "#D7CCC8", alpha = 0.3, linewidth = 1.2) +
+  scale_color_manual(
+    values = c(
+      "South America" = "#43A047",
+      "Africa" = "#FB8C00", 
+      "Central Am. & Caribbean" = "#1E88E5",
+      "Asia-Pacific" = "#8E24AA",
+      "Other / Blend" = "#78909C"
+    ),
+    name = "Bean Origin Region"
+  ) +
+  labs(
+    title = "Relationship Between Cocoa Percentage and Expert Rating",
+    subtitle = "Points colored by bean origin region | LOESS curve shows overall trend",
+    x = "Cocoa Percentage (%)",
+    y = "Expert Rating Score",
+    caption = "Higher cocoa % doesn't guarantee higher ratings"
+  ) +
+  scale_x_continuous(breaks = seq(40, 100, 10), limits = c(40, 100)) +
+  scale_y_continuous(breaks = seq(1, 5, 0.5), limits = c(1, 4.5)) +
+  theme_premium() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal"
+  ) +
+  guides(color = guide_legend(nrow = 2, override.aes = list(size = 3.5, alpha = 0.9)))
+
+p_scatter
+```
+
+### 📝 Scatterplot Interpretation {data-height=250}
+
+This scatterplot explores the relationship between **cocoa percentage** and **expert ratings**. The LOESS curve reveals that ratings **peak around 65-75% cocoa**, then decline at higher percentages. The weak negative correlation (**r = `r round(cor(chocolate$cocoa_percent_num, chocolate$rating, use="complete.obs"), 3)`**) indicates cocoa content alone doesn't determine quality.
