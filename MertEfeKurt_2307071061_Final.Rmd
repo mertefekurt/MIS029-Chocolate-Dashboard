@@ -1089,3 +1089,54 @@ p_scatter
 ### 📝 Scatterplot Interpretation {data-height=250}
 
 This scatterplot explores the relationship between **cocoa percentage** and **expert ratings**. The LOESS curve reveals that ratings **peak around 65-75% cocoa**, then decline at higher percentages. The weak negative correlation (**r = `r round(cor(chocolate$cocoa_percent_num, chocolate$rating, use="complete.obs"), 3)`**) indicates cocoa content alone doesn't determine quality.
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### 📊 Correlation Analysis {data-height=200}
+
+```{r}
+cor_val <- round(cor(chocolate$cocoa_percent_num, chocolate$rating, use = "complete.obs"), 3)
+```
+
+<div class="stat-highlight" style="text-align: center; padding: 15px; background: linear-gradient(135deg, #FFF8E1 0%, #FFFFFF 100%); border-radius: 12px; border-left: 4px solid #FFC107;">
+<div style="font-size: 2.5rem; font-weight: bold; color: #2C1810; font-family: 'Playfair Display', serif;">
+r = `r cor_val`
+</div>
+<div style="font-size: 0.9rem; color: #5D4037; margin-top: 5px;">
+⚠️ <strong>Weak Negative Correlation</strong>
+</div>
+<div style="font-size: 0.8rem; color: #8D6E63; margin-top: 8px;">
+Cocoa % explains only `r round(cor_val^2 * 100, 1)`% of rating variance
+</div>
+</div>
+
+### 🌍 Statistics by Bean Region {data-height=280}
+
+```{r}
+region_stats <- chocolate_scatter %>%
+  group_by(bean_region) %>%
+  summarise(
+    Count = n(),
+    `Avg Rating` = round(mean(rating), 2),
+    `Avg Cocoa` = paste0(round(mean(cocoa_percent_num), 0), "%"),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(`Avg Rating`)) %>%
+  rename(Region = bean_region)
+
+kable(region_stats, align = c('l', 'c', 'c', 'c')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE, font_size = 11) %>%
+  row_spec(0, bold = TRUE, background = "#5D4037", color = "white")
+```
+
+### 💡 Key Findings {data-height=270}
+
+**Insights:**
+
+- **Weak Correlation** (r = `r cor_val`): Cocoa % has minimal impact
+- **Sweet Spot**: 65-75% cocoa achieves highest scores
+- **Diminishing Returns**: Very dark chocolate (>85%) scores lower
+- **Regional Consistency**: All bean regions show similar patterns
+
