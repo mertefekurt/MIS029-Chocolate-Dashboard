@@ -1232,3 +1232,39 @@ p_interactive
 ### 📝 Interactive Features {data-height=150}
 
 **Native Plotly** with **WebGL** for optimal performance. Stratified sample (40% per category). **Hover** for details, use toolbar to **zoom/pan/download**.
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### 📖 How to Use This Chart {data-height=280}
+
+**Hover** over points to see: Manufacturer name, location, bean origin, cocoa %, rating & category.
+
+**Toolbar Options:** Download PNG, Zoom in/out, Pan, Reset view.
+
+**Color Legend:**
+
+| Color | Category |
+|:------|:---------|
+| 🟢 Green | Outstanding / Highly Recommended |
+| 🟡 Orange | Recommended |
+| 🔴 Red | Disappointing / Unpleasant |
+
+### ⭐ Rating Distribution {data-height=470}
+
+```{r fig.height=4}
+cat_dist <- chocolate %>% count(rating_category) %>% 
+  mutate(pct = round(n/sum(n)*100, 1))
+
+plot_ly(cat_dist, labels = ~rating_category, values = ~n, type = 'pie',
+        textposition = 'inside', textinfo = 'percent',
+        marker = list(colors = unname(rating_colors),
+                      line = list(color = '#FFFFFF', width = 2)),
+        hoverinfo = 'label+value+percent',
+        height = 320) %>%
+  layout(showlegend = TRUE,
+         legend = list(orientation = 'h', y = -0.1, x = 0.5, xanchor = 'center', 
+                       font = list(size = 10)),
+         margin = list(t = 10, b = 40, l = 10, r = 10)) %>%
+  config(displayModeBar = FALSE)
+```
