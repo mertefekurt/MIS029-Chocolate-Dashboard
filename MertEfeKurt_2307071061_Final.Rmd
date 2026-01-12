@@ -1330,3 +1330,26 @@ datatable(chocolate_display,
               ),
               fontWeight = 'bold')
 ```
+
+### ℹ️ Usage Tips
+
+**How to use this table:**
+
+- 🔍 **Filter:** Use the search boxes under each column header
+- ↕️ **Sort:** Click on column headers to sort
+- 📋 **Export:** Use Copy, CSV, or Excel buttons
+- 📜 **Scroll:** Scroll within the table to see all `r nrow(chocolate)` records
+
+**Column Guide:**
+
+| Column | Description |
+|:-------|:------------|
+| Manufacturer | Company that made the chocolate |
+| Location | Country where company is based |
+| Year | When the review was conducted |
+| Bean Origin | Where cocoa beans came from |
+| Cocoa | Percentage of cocoa content |
+| Rating | Expert score (1.0 - 5.0) |
+| Category | Rating classification |
+| Flavors | Tasting notes from experts |
+
