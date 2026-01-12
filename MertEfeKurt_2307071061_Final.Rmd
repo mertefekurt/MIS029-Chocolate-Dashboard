@@ -1268,3 +1268,65 @@ plot_ly(cat_dist, labels = ~rating_category, values = ~n, type = 'pie',
          margin = list(t = 10, b = 40, l = 10, r = 10)) %>%
   config(displayModeBar = FALSE)
 ```
+
+
+Data {data-icon="fa-table"}
+=====================================
+
+Column {data-width=1000 .tabset}
+-----------------------------------------------------------------------
+
+### 🔍 Complete Dataset Explorer
+
+```{r}
+chocolate_display <- chocolate %>%
+  select(
+    Manufacturer = company_manufacturer,
+    Location = company_location,
+    Year = review_date,
+    `Bean Origin` = country_of_bean_origin,
+    `Bar Name` = specific_bean_origin_or_bar_name,
+    `Cocoa` = cocoa_percent,
+    Rating = rating,
+    Category = rating_category,
+    Flavors = most_memorable_characteristics
+  )
+
+datatable(chocolate_display,
+          filter = 'top',
+          extensions = 'Buttons',
+          fillContainer = TRUE,
+          options = list(
+            pageLength = 25,
+            scrollY = "calc(100vh - 280px)",
+            scrollCollapse = TRUE,
+            paging = FALSE,
+            scrollX = FALSE,
+            autoWidth = TRUE,
+            dom = 'Bfrti',
+            buttons = c('copy', 'csv', 'excel'),
+            columnDefs = list(
+              list(width = 'auto', targets = c(0, 1, 3, 4, 8)),
+              list(width = '55px', targets = c(2, 5, 6)),
+              list(width = 'auto', targets = 7)
+            ),
+            language = list(
+              search = "🔍 Search:",
+              info = "Showing _START_ to _END_ of _TOTAL_ chocolate bars"
+            )
+          ),
+          rownames = FALSE,
+          class = 'cell-border stripe hover compact',
+          width = '100%') %>%
+  formatStyle('Rating',
+              background = styleColorBar(range(chocolate$rating), '#8D6E63'),
+              backgroundSize = '95% 70%',
+              backgroundRepeat = 'no-repeat',
+              backgroundPosition = 'center') %>%
+  formatStyle('Category',
+              backgroundColor = styleEqual(
+                names(rating_colors),
+                c("#C8E6C9", "#DCEDC8", "#FFF9C4", "#FFCCBC", "#FFCDD2")
+              ),
+              fontWeight = 'bold')
+```
