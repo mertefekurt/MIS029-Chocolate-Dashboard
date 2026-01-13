@@ -1432,3 +1432,93 @@ kable(packages_df, align = c('l', 'c', 'l', 'l')) %>%
                 full_width = TRUE, font_size = 11) %>%
   row_spec(0, bold = TRUE, background = "#2C1810", color = "white")
 ```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### 🔗 Documentation & Tutorials
+
+<div class="info-card">
+
+**Official Documentation:**
+
+| Resource | URL | Purpose |
+|:---------|:----|:--------|
+| 📖 Flexdashboard | [pkgs.rstudio.com/flexdashboard](https://pkgs.rstudio.com/flexdashboard/) | Dashboard layouts & components |
+| 📊 Plotly R | [plotly.com/r](https://plotly.com/r/) | Interactive visualizations |
+| 🎨 ggplot2 | [ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/) | Static graphics reference |
+| 📋 DT Package | [rstudio.github.io/DT](https://rstudio.github.io/DT/) | DataTables integration |
+| 📚 kableExtra | [haozhu233.github.io/kableExtra](https://haozhu233.github.io/kableExtra/) | Table styling |
+
+**Books & Learning Resources:**
+
+1. Wickham, H. & Grolemund, G. (2023). *R for Data Science* (2nd ed.). [r4ds.hadley.nz](https://r4ds.hadley.nz/)
+
+2. Sievert, C. (2020). *Interactive Web-Based Data Visualization with R, plotly, and shiny*. Chapman & Hall/CRC. [plotly-r.com](https://plotly-r.com/)
+
+3. Wilke, C. O. (2019). *Fundamentals of Data Visualization*. O'Reilly. [clauswilke.com/dataviz](https://clauswilke.com/dataviz/)
+
+4. Healy, K. (2018). *Data Visualization: A Practical Introduction*. Princeton University Press.
+
+**Course Materials:**
+
+- MIS029 Data Visualization lecture notes
+- Flexdashboard layout examples: [pkgs.rstudio.com/flexdashboard/articles/layouts.html](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html)
+
+</div>
+
+### 🔄 Session Information
+
+```{r}
+session_df <- tibble(
+  Property = c("R Version", "Platform", "Operating System", "Locale", "Date Generated", "Timezone"),
+  Value = c(
+    paste(R.version$major, R.version$minor, sep = "."),
+    R.version$platform,
+    paste(Sys.info()["sysname"], Sys.info()["release"]),
+    Sys.getlocale("LC_TIME"),
+    format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+    Sys.timezone()
+  )
+)
+
+kable(session_df, align = c('l', 'l')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = TRUE, font_size = 11) %>%
+  row_spec(0, bold = TRUE, background = "#455A64", color = "white")
+```
+
+### 📋 Reproducibility & License
+
+<div class="info-card" style="border-left-color: #FF9800;">
+
+**To reproduce this analysis:**
+
+```r
+# 1. Install required packages
+install.packages(c("flexdashboard", "tidyverse", 
+                   "plotly", "DT", "knitr", 
+                   "kableExtra", "scales"))
+
+# 2. Render the dashboard
+rmarkdown::render("MertEfeKurt_2307071061_Final.Rmd")
+```
+
+⚠️ **Requirements:** 
+
+- R version ≥ 4.0.0
+- Internet connection (data fetched from GitHub)
+- ~500 MB RAM for rendering
+
+**Data License:** TidyTuesday data is released under CC0 1.0 Universal license.
+
+---
+
+**Dashboard Author:** Mert Efe Kurt (2307071061)
+
+**Course:** MIS029 - Data Visualization
+
+**Institution:** Final Project Submission
+
+**Generated:** `r format(Sys.time(), "%B %d, %Y at %H:%M")`
+
+</div>
