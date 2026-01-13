@@ -1353,3 +1353,82 @@ datatable(chocolate_display,
 | Category | Rating classification |
 | Flavors | Tasting notes from experts |
 
+
+References {data-icon="fa-book"}
+=====================================
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### 📚 Data Sources & Methodology
+
+<div class="info-card">
+
+**Primary Data Source:**
+
+📊 **TidyTuesday - Chocolate Bar Ratings (2022-01-18)**
+
+| Attribute | Details |
+|:----------|:--------|
+| Repository | [github.com/rfordatascience/tidytuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-01-18) |
+| Direct CSV | [chocolate.csv](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv) |
+| Records | 2,530 chocolate bar reviews |
+| Time Span | 2006 - 2021 |
+| Variables | 10 original columns |
+
+**Original Data Provider:**
+
+🍫 **Flavors of Cacao** - [flavorsofcacao.com](http://flavorsofcacao.com/chocolate_database.html)
+
+- Compiled by: **Manhattan Chocolate Society**
+- Rating methodology: Blind tasting by certified chocolate experts
+- Scale: 1.0 (unpleasant) to 5.0 (elite/outstanding)
+
+**Data Collection Method:**
+
+Expert tasters evaluate chocolate bars on texture, flavor complexity, finish, and overall impression. Each bar is rated independently without brand knowledge.
+
+</div>
+
+### 📦 R Packages Used
+
+```{r}
+packages_df <- tibble(
+  Package = c("flexdashboard", "tidyverse", "ggplot2", "plotly", "DT", "knitr", "kableExtra", "scales"),
+  Version = c(
+    as.character(packageVersion("flexdashboard")),
+    as.character(packageVersion("tidyverse")),
+    as.character(packageVersion("ggplot2")),
+    as.character(packageVersion("plotly")),
+    as.character(packageVersion("DT")),
+    as.character(packageVersion("knitr")),
+    as.character(packageVersion("kableExtra")),
+    as.character(packageVersion("scales"))
+  ),
+  Purpose = c(
+    "Dashboard framework & layout",
+    "Data wrangling (dplyr, tidyr, readr)",
+    "Grammar of graphics visualizations",
+    "Interactive charts with WebGL",
+    "Interactive searchable data tables",
+    "Dynamic report generation",
+    "Advanced table formatting",
+    "Axis & label formatting"
+  ),
+  Citation = c(
+    "Iannone et al. (2024)",
+    "Wickham et al. (2019)",
+    "Wickham (2016)",
+    "Sievert (2020)",
+    "Xie et al. (2024)",
+    "Xie (2024)",
+    "Zhu (2024)",
+    "Wickham & Seidel (2022)"
+  )
+)
+
+kable(packages_df, align = c('l', 'c', 'l', 'l')) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), 
+                full_width = TRUE, font_size = 11) %>%
+  row_spec(0, bold = TRUE, background = "#2C1810", color = "white")
+```
