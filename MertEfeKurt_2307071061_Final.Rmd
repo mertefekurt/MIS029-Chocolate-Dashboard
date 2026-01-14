@@ -1522,3 +1522,4 @@ rmarkdown::render("MertEfeKurt_2307071061_Final.Rmd")
 **Generated:** `r format(Sys.time(), "%B %d, %Y at %H:%M")`
 
 </div>
+# Minor fix
