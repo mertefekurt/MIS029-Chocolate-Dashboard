@@ -537,13 +537,14 @@ chocolate <- chocolate %>%
 
 # ===== SUMMARY STATISTICS =====
 total_reviews <- nrow(chocolate)
-avg_rating <- round(mean(chocolate$rating, na.rm = TRUE), 2)
 num_countries <- n_distinct(chocolate$company_location)
 num_manufacturers <- n_distinct(chocolate$company_manufacturer)
-avg_cocoa <- round(mean(chocolate$cocoa_percent_num, na.rm = TRUE), 1)
 num_origins <- n_distinct(chocolate$country_of_bean_origin)
 
 # ===== PREMIUM GGPLOT THEME =====
+#' Build the shared dashboard theme for static ggplot charts.
+#'
+#' @return A ggplot2 theme object with consistent typography, colors, and spacing.
 theme_premium <- function() {
   theme_minimal(base_family = "sans") +
     theme(
