@@ -2,30 +2,28 @@
 
 ![Chocolate dashboard cover](assets/readme-cover.svg)
 
-An R Markdown flexdashboard exploring chocolate bar ratings by origin, manufacturer, cocoa percentage, ingredient count, and tasting notes.
+An R Markdown flexdashboard for chocolate bar ratings: origins, manufacturers, cocoa percentage, ingredients, and tasting notes.
 
-## Dashboard
+## Open the dashboard
 
-Open the rendered version from `docs/index.html`, or rebuild the source file in RStudio.
+Use the already rendered page:
+
+```text
+docs/index.html
+```
+
+Rebuild from R:
 
 ```r
 rmarkdown::render("MertEfeKurt_2307071061_Final.Rmd")
 ```
 
-## What it covers
-
-- Rating distributions and top performers
-- Company and bean-origin comparisons
-- Cocoa percentage and ingredient patterns
-- Interactive tables for detailed inspection
-- Standalone HTML output for sharing
-
 ## Files
 
 ```text
-MertEfeKurt_2307071061_Final.Rmd   source dashboard
-MertEfeKurt_2307071061_Final.html  rendered dashboard
+MertEfeKurt_2307071061_Final.Rmd   dashboard source
+MertEfeKurt_2307071061_Final.html  rendered artifact
 docs/index.html                    publishable page
-chocolate.csv                      source dataset
-_site.yml                          site configuration
+chocolate.csv                      dataset
+_site.yml                          site config
 ```
