@@ -1,29 +1,33 @@
 # MIS029 Chocolate Dashboard
 
-![Chocolate dashboard cover](assets/readme-cover.svg)
+![MIS029 Chocolate Dashboard cover](assets/readme-cover.svg)
 
-An R Markdown flexdashboard for chocolate bar ratings: origins, manufacturers, cocoa percentage, ingredients, and tasting notes.
+Interactive chocolate ratings dashboard.
 
-## Open the dashboard
+## Project route
 
-Use the already rendered page:
+![Workflow diagram](assets/readme-diagram.svg)
 
-```text
-docs/index.html
+## Run it locally
+
+```bash
+git clone https://github.com/mertefekurt/MIS029-Chocolate-Dashboard.git
+cd MIS029-Chocolate-Dashboard
+MIS029-Chocolate-Dashboard
 ```
 
-Rebuild from R:
+## Notes from the build
 
-```r
-rmarkdown::render("MertEfeKurt_2307071061_Final.Rmd")
-```
+- Designed as a focused desktop lab repo.
+- Keeps setup short.
+- Prioritizes readable output over infrastructure.
 
-## Files
+## Repository tour
 
 ```text
-MertEfeKurt_2307071061_Final.Rmd   dashboard source
-MertEfeKurt_2307071061_Final.html  rendered artifact
-docs/index.html                    publishable page
-chocolate.csv                      dataset
-_site.yml                          site config
+docs/                              published artifact
+.gitignore                         project file
+_site.yml                          project file
+chocolate.csv                      project file
+MertEfeKurt_2307071061_Final.html  project file
 ```
